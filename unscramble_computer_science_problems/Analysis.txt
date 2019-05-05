@@ -1,0 +1,18 @@
+"k" denotes results
+"n" denotes texts data
+"m" denotes calls data
+
+Task 0: O(1)
+Explanation: Picking all the values using index of array independent of array size.
+
+Task 1: O(n + m)
+Explanation: Iterating through all the values in texts and calls data one by one.
+
+Task 2: O(m)
+Explanation: Iterating once through all the values in calls data and performing operations.
+
+Task 3: O(m + k log(k))
+Explanation: Iterating once through all the values in calls data and performing operations including one sort.
+
+Task 4: O(2m + n + k log(k))
+Explanation: Iterating twice through calls data and once through texts data and performing a sort operation.
