@@ -5,27 +5,32 @@ It's ok if you don't understand how to read files.
 import csv
 
 with open('calls.csv', 'r') as f:
-	reader = csv.reader(f)
-	calls = list(reader)
-	results = []
-	b2bCalls = 0
-	callsFromB = 0
-	for log in calls:
-		number1 = log[0].split(')')[0][1:]
-		if (number1 != '080'): continue
-		else: callsFromB += 1
-		number2 = log[1]
-		if number2.startswith('140'): continue
-		code = number2.split(')')[0][1:] if number2.startswith('(') else number2[:4]
-		if code == '080': b2bCalls += 1
-		if (code not in results):
-			results.append(code)
-	print('The numbers called by people in Bangalore have codes:')
-	results.sort()
-	for result in results:
-		print(result)
-	print()
-	print('%0.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' % (b2bCalls*100/callsFromB))
+    reader = csv.reader(f)
+    calls = list(reader)
+    results = []
+    b2bCalls = 0
+    callsFromB = 0
+    for log in calls:
+        number1 = log[0].split(')')[0][1:]
+        if number1 != '080':
+            continue
+        else:
+            callsFromB += 1
+        number2 = log[1]
+        if number2.startswith('140'):
+            continue
+        code = number2.split(')')[0][1:] if number2.startswith('(') else number2[:4]
+        if code == '080':
+            b2bCalls += 1
+        if code not in results:
+            results.append(code)
+    print('The numbers called by people in Bangalore have codes:')
+    results.sort()
+    for result in results:
+        print(result)
+    print()
+    print('%0.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' % (
+                b2bCalls * 100 / callsFromB))
 
 """
 TASK 3:

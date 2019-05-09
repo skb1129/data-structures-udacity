@@ -5,18 +5,19 @@ It's ok if you don't understand how to read files.
 import csv
 
 results = []
-texts = None
-calls = None
+texts = []
+calls = []
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
-    texts = list(reader)
+    texts += list(reader)
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
-    calls = list(reader)
+    calls += list(reader)
 
-def getUniqueNumbers(data):
+
+def get_unique_numbers(data):
     for number in data:
         if number[0] not in results:
             results.append(number[0])
@@ -24,7 +25,8 @@ def getUniqueNumbers(data):
             results.append(number[1])
     return results
 
-getUniqueNumbers(calls)
+
+get_unique_numbers(calls)
 
 for log in texts:
     try:
@@ -55,4 +57,3 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
-

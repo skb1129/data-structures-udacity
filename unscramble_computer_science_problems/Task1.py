@@ -3,9 +3,12 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 
+import csv
+
 results = []
 
-def getUniqueNumbers(data):
+
+def get_unique_numbers(data):
     for number in data:
         if number[0] not in results:
             results.append(number[0])
@@ -13,16 +16,16 @@ def getUniqueNumbers(data):
             results.append(number[1])
     return results
 
-import csv
+
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
-    getUniqueNumbers(texts)
+    get_unique_numbers(texts)
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    getUniqueNumbers(calls)
+    get_unique_numbers(calls)
     print('There are %d different telephone numbers in the records.' % len(results))
 
 """

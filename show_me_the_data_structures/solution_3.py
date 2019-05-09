@@ -1,8 +1,9 @@
 import sys
 import bisect
 
+
 class Node:
-    def __init__(self, freq, data = None, left = None, right = None):
+    def __init__(self, freq, data=None, left=None, right=None):
         self.left = left
         self.right = right
         self.freq = freq
@@ -10,12 +11,13 @@ class Node:
 
     def __repr__(self):
         return "FREQ: {}, DATA: {}, LEFT: \n{}, RIGHT: \n{}".format(self.freq, self.data, self.left, self.right)
-    
+
     def __lt__(self, other):
         return self.freq < other.freq
 
     def __gt__(self, other):
         return self.freq > other.freq
+
 
 def create_tree(nodes):
     while len(nodes) > 1:
@@ -25,7 +27,8 @@ def create_tree(nodes):
         bisect.insort(nodes, new_node)
     return nodes.pop()
 
-def get_code(tree, char, code = ""):
+
+def get_code(tree, char, code=""):
     if (not tree.left) and (char == tree.data):
         code += "0"
         return code
@@ -34,36 +37,38 @@ def get_code(tree, char, code = ""):
         return code
     if (not tree.right) and (not tree.right):
         return None
-    codeL = code
+    code_l = code
     if tree.left is not None:
-        codeL += "0"
-        result = get_code(tree.left, char, codeL)
+        code_l += "0"
+        result = get_code(tree.left, char, code_l)
         if result is not None:
             return result
-    codeR = code
+    code_r = code
     if tree.right is not None:
-        codeR += "1"
-        result = get_code(tree.right, char, codeR)
+        code_r += "1"
+        result = get_code(tree.right, char, code_r)
         if result is not None:
             return result
-        
+
 
 def huffman_encoding(data):
     frequency_map = {}
     for char in data:
-        if char not in frequency_map: frequency_map[char] = 1
-        else: frequency_map[char] += 1
+        if char not in frequency_map:
+            frequency_map[char] = 1
+        else:
+            frequency_map[char] += 1
     items = sorted(frequency_map.items(), key=lambda x: x[1])
     nodes = []
     for item in items:
         node = Node(item[1], item[0])
         nodes.append(node)
-    node = Node(2)
     tree = create_tree(nodes)
     encoded_data = ""
     for char in data:
         encoded_data += get_code(tree, char)
     return encoded_data, tree
+
 
 def huffman_decoding(data, tree):
     node = tree
@@ -79,19 +84,20 @@ def huffman_decoding(data, tree):
             node = node.right
     return decoded_data
 
+
 codes = {}
 
 a_great_sentence = "The bird is the word"
 
-print ("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
-print ("The content of the data is: {}\n".format(a_great_sentence))
+print("The size of the data is: {}\n".format(sys.getsizeof(a_great_sentence)))
+print("The content of the data is: {}\n".format(a_great_sentence))
 
-encoded_data, tree = huffman_encoding(a_great_sentence)
+encoded_sentence, huff_tree = huffman_encoding(a_great_sentence)
 
-print ("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data, base=2))))
-print ("The content of the encoded data is: {}\n".format(encoded_data))
+print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_sentence, base=2))))
+print("The content of the encoded data is: {}\n".format(encoded_sentence))
 
-decoded_data = huffman_decoding(encoded_data, tree)
+decoded_sentence = huffman_decoding(encoded_sentence, huff_tree)
 
-print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
-print ("The content of the encoded data is: {}\n".format(decoded_data))
+print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_sentence)))
+print("The content of the encoded data is: {}\n".format(decoded_sentence))

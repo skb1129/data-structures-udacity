@@ -1,4 +1,4 @@
-class LRU_Cache(object):
+class LRUCache(object):
 
     def __init__(self, capacity):
         self.cache = {}
@@ -15,7 +15,7 @@ class LRU_Cache(object):
 
 
 # Test Case: 1
-our_cache = LRU_Cache(5)
+our_cache = LRUCache(5)
 our_cache.set(7, 7)
 our_cache.set(6, 6)
 our_cache.set(5, 5)
@@ -27,7 +27,7 @@ print(our_cache.get(7))
 print(our_cache.get(2))
 
 # Test Case: 2
-our_cache = LRU_Cache(3)
+our_cache = LRUCache(3)
 our_cache.set(7, 7)
 our_cache.set(6, 6)
 our_cache.set(5, 5)
@@ -36,7 +36,7 @@ print(our_cache.get(4))
 print(our_cache.get(6))
 
 # Test Case: 3
-our_cache = LRU_Cache(1)
+our_cache = LRUCache(1)
 our_cache.set(7, 7)
 our_cache.set(6, 6)
 our_cache.set(5, 5)
