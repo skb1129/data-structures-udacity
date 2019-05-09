@@ -1,3 +1,4 @@
+import random
 import sys
 
 
@@ -21,9 +22,8 @@ def get_min_max_by_sorting(input_list):
 
 
 # Example Test Case of Ten Integers
-import random
 
-l = [i for i in range(0, 10)]  # a list containing 0 - 9
-random.shuffle(l)
+test_list = [i for i in range(0, 10)]  # a list containing 0 - 9
+random.shuffle(test_list)
 
-print("Pass" if ((0, 9) == get_min_max_by_sorting(l)) else "Fail")
+print("Pass" if ((0, 9) == get_min_max_by_sorting(test_list)) else "Fail")
