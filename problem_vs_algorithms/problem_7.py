@@ -1,6 +1,6 @@
 # A RouteTrie will store our routes and their associated handlers
 class RouteTrie:
-    def __init__(self, data = None):
+    def __init__(self, data=None):
         # Initialize the trie with an root node and a handler, this is the root path or home page node
         self.root = RouteTrieNode(data)
 
@@ -18,13 +18,15 @@ class RouteTrie:
         head = self.root
         for route in routes:
             head = head.children.get(route)
-            if not head: return None
+            if not head:
+                return None
         return head
         pass
 
+
 # A RouteTrieNode will be similar to our autocomplete TrieNode... with one additional element, a handler.
 class RouteTrieNode:
-    def __init__(self, data = None):
+    def __init__(self, data=None):
         # Initialize the node with children as before, plus a handler
         self.children = {}
         self.data = data
@@ -35,9 +37,10 @@ class RouteTrieNode:
             self.children[route] = RouteTrieNode()
         return self.children.get(route)
 
-# The Router class will wrap the Trie and handle 
+
+# The Router class will wrap the Trie and handle
 class Router:
-    def __init__(self, data, error = None):
+    def __init__(self, data, error=None):
         # Create a new RouteTrie for holding our routes
         # You could also add a handler for 404 page not found responses as well!
         self.router = RouteTrie(data)
@@ -58,24 +61,27 @@ class Router:
         # e.g. /about and /about/ both return the /about handler
         routes = self.split_path(string)
         node = self.router.find(routes)
-        if (not node) or (not node.data): return self.error
+        if (not node) or (not node.data):
+            return self.error
         return node.data
 
-    def split_path(self, route):
+    @staticmethod
+    def split_path(route):
         # you need to split the path into parts for 
         # both the add_handler and loopup functions,
         # so it should be placed in a function here
         return list(filter(None, route.split('/')))
 
+
 # Here are some test cases and expected outputs you can use to test your implementation
 
 # create the router and add a route
-router = Router("root handler", "not found handler") # remove the 'not found handler' if you did not implement this
+router = Router("root handler", "not found handler")  # remove the 'not found handler' if you did not implement this
 router.add_handler("/home/about", "about handler")  # add a route
 
 # some lookups with the expected output
-print(router.lookup("/")) # should print 'root handler'
-print(router.lookup("/home")) # should print 'not found handler' or None if you did not implement one
-print(router.lookup("/home/about")) # should print 'about handler'
-print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
-print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+print(router.lookup("/"))  # should print 'root handler'
+print(router.lookup("/home"))  # should print 'not found handler' or None if you did not implement one
+print(router.lookup("/home/about"))  # should print 'about handler'
+print(router.lookup("/home/about/"))  # should print 'about handler' or None if you did not handle trailing slashes
+print(router.lookup("/home/about/me"))  # should print 'not found handler' or None if you did not implement one

@@ -9,13 +9,14 @@ def sort_012(input_list):
     index = 0
     for number in input_list:
         if number == 0:
-            result.insert(0,  number)
+            result.insert(0, number)
             index += 1
         elif number == 1:
             result.insert(index, number)
         elif number == 2:
             result.append(number)
     return result
+
 
 def test_function(test_case):
     sorted_array = sort_012(test_case)
@@ -24,6 +25,7 @@ def test_function(test_case):
         print("Pass")
     else:
         print("Fail")
+
 
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])

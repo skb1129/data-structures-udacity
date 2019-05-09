@@ -1,23 +1,29 @@
 import sys
 
+
 def get_min_max_by_sorting(input_list):
     """
-    Return a tuple(min, max) out of list of unsorted integers.
+    Return a tuple(min_val, max_val) out of list of unsorted integers.
 
     Args:
-       int(list): list of integers containing one or more integers
+        input_list(list): List of integers containing one or more integers
+    Returns:
+        (int),(int): Minimum and maximum value
     """
-    min = sys.maxsize
-    max = -sys.maxsize - 1
+    min_val = sys.maxsize
+    max_val = -sys.maxsize - 1
     for num in input_list:
-        if num > max: max = num
-        if num < min: min = num
-    return (min, max)
+        if num > max_val:
+            max_val = num
+        if num < min_val:
+            min_val = num
+    return min_val, max_val
 
-## Example Test Case of Ten Integers
+
+# Example Test Case of Ten Integers
 import random
 
 l = [i for i in range(0, 10)]  # a list containing 0 - 9
 random.shuffle(l)
 
-print ("Pass" if ((0, 9) == get_min_max_by_sorting(l)) else "Fail")
+print("Pass" if ((0, 9) == get_min_max_by_sorting(l)) else "Fail")

@@ -20,6 +20,7 @@ def rearrange_digits(input_list):
             flag = True
     return [int(number1), int(number2)]
 
+
 def test_function(test_case):
     output = rearrange_digits(test_case[0])
     print(output)
@@ -28,6 +29,7 @@ def test_function(test_case):
         print("Pass")
     else:
         print("Fail")
+
 
 test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
