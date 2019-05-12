@@ -23,7 +23,11 @@ def get_min_max_by_sorting(input_list):
 
 # Example Test Case of Ten Integers
 
-test_list = [i for i in range(0, 10)]  # a list containing 0 - 9
-random.shuffle(test_list)
+test_list_1 = [i for i in range(0, 10)]  # a list containing 0 - 9
+test_list_2 = [i for i in range(20, 100)]
+random.shuffle(test_list_1)
+random.shuffle(test_list_2)
 
-print("Pass" if ((0, 9) == get_min_max_by_sorting(test_list)) else "Fail")
+print("Pass" if ((0, 9) == get_min_max_by_sorting(test_list_1)) else "Fail")
+print("Pass" if ((20, 99) == get_min_max_by_sorting(test_list_2)) else "Fail")
+print("Pass" if ((9, 9) == get_min_max_by_sorting([9])) else "Fail")
