@@ -8,23 +8,22 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
-    if number == input_list[0]:
-        return 0
-    elif number < input_list[0]:
-        index = len(input_list) - 1
-        while number < input_list[index]:
-            index -= 1
-            if input_list[index] > input_list[index + 1]:
-                break
-        return index if number == input_list[index] else -1
-    else:
-        index = 1
-        while number > input_list[index]:
-            if input_list[index] > input_list[index + 1]:
-                break
-            index += 1
-        return index if number == input_list[index] else -1
-    pass
+    right = len(input_list) - 1
+    mid = right // 2
+    left = 0
+    while number != input_list[mid]:
+        tmp = mid
+        if number > input_list[left]:
+            mid = (mid + left) // 2
+            left = tmp
+        elif number < input_list[left]:
+            mid = (mid + right) // 2
+            right = tmp
+        else:
+            return left
+        if mid == tmp:
+            return -1
+    return mid
 
 
 def linear_search(input_list, number):
